@@ -1,0 +1,49 @@
+<% if session[:admin].present? %>
+  <%= render 'shared/admin_actions' %>
+<% end %>
+
+<h2> Update Advertisement </h2>
+<ul>
+<% @adv.errors.each do |attre, msg| %>
+  <% attre == :adv_name ? @name = true && @flag = true : @name = false  %>
+  <% attre == :rate_per_click ? @rate = true && @rate_flag = true : @rate = false  %>
+  <li style='color: red;'> <%= msg %> </li>
+<% end %>
+</ul>
+<div class='container' style="margin-top: 40px;">
+  <%= form_for @adv do |f| %>
+   <% if @flag == true %>
+    <div class="form-group has-error" style="width: 25%;">
+   <% else %>
+    <div class="form-group" style="width: 25%;">
+   <% end %>
+      <%= f.label :adv_name, 'Advertisement Name' %>
+      <%= f.text_field :adv_name , html_options = { class: "form-control", placeholder: "Advertisement Name" } %>
+    </div>
+    <div class="form-group" style="width: 25%;">
+      <%= f.label :link %>
+      <%= f.text_field :link , html_options = { class: "form-control", placeholder: "Link to advertisement's Website" } %>
+    </div>
+    <% if @rate_flag.present? %>
+      <div class="form-group has-error" style="width: 12%;">
+    <% else %>
+      <div class="form-group" style="width: 12%;">
+    <% end %>
+      <%= f.label :rate_per_click, 'Rate per click (in $)' %>
+      <%= f.text_field :rate_per_click , html_options = { class: "form-control", placeholder: "Rate per click" } %>
+    </div>
+    <div class="form-group" style="width: 25%;">
+      <%= f.label :company %>
+      <%= f.text_field :company , html_options = { class: "form-control", placeholder: "Company is Optional" } %>
+    </div>
+    <div class="checkbox">
+    <label>
+      <%= f.check_box :functional %>
+      Functional <br /> (To be clickable by customers / Make Active)
+    </label>
+  </div>
+    <button type="submit" class="btn btn-default">Create Advertisement</button>
+    <button type="submit" class="btn btn-default" id="cancel" data-endpoint="<%= advertisements_path %>">Cancel</button>
+  <% end %>
+
+</div>

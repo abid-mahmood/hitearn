@@ -1,0 +1,5 @@
+<% if session[:admin].present? %>
+  <%= render 'shared/admin_actions' %>
+<% end %>
+
+<%= render 'shared/table', title: 'Listing All Users', users: @users, all: @all_users, activated: @activated, inactive: @inactive %>

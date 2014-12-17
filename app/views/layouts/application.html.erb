@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>|| HIT &amp; EARN ||</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => false %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => false %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class='wrapper'>
+    <%= render 'shared/header' %>
+    <%= yield %>
+    <%= render 'shared/footer' %>
+  </div>
+</body>
+</html>

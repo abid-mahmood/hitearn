@@ -1,0 +1,15 @@
+<% if session[:admin].present? %>
+  <%= render 'shared/admin_actions' %>
+<% end %>
+
+<div class='container'>
+  <div class='row'>
+    <h2 style="font-family: 'Times new Roman'; margin-bottom: 50px;"> Listing Non-Functional Advertisements </h2>
+  </div>
+</div>
+
+<div class='container'>
+  <% @advs.each do |adv| %>
+    <%= render 'banner', adv: adv  %>
+  <% end %>
+</div>

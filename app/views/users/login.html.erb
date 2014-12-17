@@ -1,0 +1,17 @@
+<div class='bg-img'>
+  <div class='credentials-container'>
+    <div class='form-holder'>
+      <span> Enter Credentials </span>
+      <%= form_for @user, url: user_home_users_path, id: 'login-form', :method => :post do |f| %>
+        <div class='field'>
+          <%= f.text_field :email, placeholder: 'Email' %>
+        </div>
+        <div class='field'>
+          <%= f.password_field :password, placeholder: 'Enter Password' %>
+        </div>
+
+        <div class='field'><%= f.submit 'Log IN', class: 'submit-action' %></div>
+      <% end %>
+    </div>
+  </div>
+</div>

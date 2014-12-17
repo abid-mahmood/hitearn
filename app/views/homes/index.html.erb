@@ -1,0 +1,19 @@
+<div>
+  <% if flash[:notice].present? %>
+    <div id="freeow-tr", class="freeow freeow-top-right">
+      <div style="opacity: 1;">
+        <div class="background">
+          <div class="content">
+          </div>
+        </div>
+      </div>
+    </div>
+    <input type='hidden', class='sync', value= "<%= raw flash[:notice] %>" />
+  <% end %>
+  <%= image_tag('header.jpg', class: 'header-img-container') %>
+  <div class='break'> 
+    <marquee class='rotate', scrollamount="10", behavior='alternate'> Now, You can hit and earn a lot of money just by clicking from home! </marquee>
+    <marquee class='rotate-1', behavior='scroll'> You can Refer your friends! </marquee>
+  </div>
+  <%= image_tag('banner2.jpg', class: 'header-img-container') %>
+</div>

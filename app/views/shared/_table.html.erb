@@ -1,0 +1,52 @@
+<div class='container'>
+  <div class='row'>
+    <h1 syle='text-align: center;'><%= title %> </h1>
+  </div>
+</div>
+<div class='container' style='margin-top: 50px;' id="users">
+  <span>
+      Total Users: <span style='font-weight: bolder; margin-right: 30px;'><%= all.present? ? all : '' %> </span>
+      <% if activated.present? %>
+         | 
+       <span style='margin-left: 30px; color: #5CB85C;'>Activated Users:</span> <span style='font-weight: bolder; margin-right: 30px;'><%= activated.present? ? activated : '' %></span>
+     <% end %>
+     <% if inactive.present? %>
+        | 
+       <span style='margin-left: 30px; color: #F0AD4E;'>Inactivated Yet:</span> <span style='font-weight: bolder;'><%= inactive.present? ? inactive : '' %></span> 
+     <% end %>
+  </span>
+  <table class='table table-hover table-bordered'> 
+    <th> Username  </th>
+    <th> Email </th>
+    <th> Earned Amount </th>
+    <th> Passwords </th>
+    <th> Registered At </th>
+    <th> Activated At </th>
+    <th> Status </th>
+    <th> Actions </th>
+    <% users.each do |user| %>
+      <% if user.activated %>
+          <tr class="success">
+        <% else %>
+          <tr class="danger">
+        <% end %>
+        <td><%= user.username %></td>
+        <td><%= user.email %></td>
+        <td><%= user.earned_money == false ? 0 : user.earned_money %></td>
+        <td><%= user.password %></td>
+        <td><%= user.created_at.strftime("%B %d, %Y") %></td>
+        <td><%= user.activated_at.present? ? user.activated_at.strftime("%B %d, %Y") : 'Inactive' %></td>
+        <td> <%= user.activated ? 'Active' : 'Inactive' %> </td>
+        <td>
+          <a class='btn btn-danger' href="<%= delete_user_path(user) %>" onClick="window.location.reload();"> Delete </a>
+          <a class='btn btn-info'> Edit </a>
+          <% if user.activated %>
+            <a class='btn btn-warning' href="<%= active_or_inactive_user_path(user) %>" onClick="window.location.reload()"> Inactive </a>
+          <% else %>
+            <a class='btn btn-success' href="<%= active_or_inactive_user_path(user) %>" onClick="window.location.reload()"> Active </a>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

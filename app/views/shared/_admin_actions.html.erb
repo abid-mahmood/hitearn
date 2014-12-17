@@ -1,0 +1,40 @@
+<div class='container-fluid'>
+  <div class='row' style='margin-top: 30px; text-align: center;'>
+    <div class="btn-group" style="margin-right: 50px;">
+      <button type="button" class="btn btn-info btn-lg" id="all-customers" data-endpoint="<%= users_path %>">Customers</button>
+      <button type="button" class="btn btn-default dropdown-toggle btn-lg" data-toggle="dropdown" aria-expanded="false">
+        <span class="caret"></span>
+        <span class="sr-only">Toggle Dropdown</span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="#" id="reg-users" data-endpoint="<%= reg_users_users_path %>">Active</a></li>
+        <li><a href="#" id="unreg-users" data-endpoint="<%= unreg_users_users_path %>">Inactive</a></li>
+      </ul>
+    </div>
+    <div class='btn-group' style="margin-right: 50px;">
+      <button type="button" class="btn btn-info btn-lg" id="advertisements" data-endpoint = "<%= advertisements_path %>">Advertisements</button>
+      <button type="button" class="btn btn-default dropdown-toggle btn-lg" data-toggle="dropdown" aria-expanded="false">
+        <span class="caret"></span>
+        <span class="sr-only">Toggle Dropdown</span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="#" id="create-adv" data-endpoint="<%= new_advertisement_path %>">Create New</a></li>
+        <li><a href="#" id="functional" data-endpoint="<%= functional_advertisements_path %>">Functional</a></li>
+        <li><a href="#" id="non-functional" data-endpoint="<%= non_functional_advertisements_path %>">Non-Functional</a></li>
+      </ul>
+    </div>
+
+    <div class='btn-group'>
+      <button type="button" class="btn btn-info btn-lg" id="advertisements" data-endpoint = "<%= advertisements_path %>">Payments</button>
+      <button type="button" class="btn btn-default dropdown-toggle btn-lg" data-toggle="dropdown" aria-expanded="false">
+        <span class="caret"></span>
+        <span class="sr-only">Toggle Dropdown</span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="#" id="create-adv" data-endpoint="<%= new_advertisement_path %>">Done</a></li>
+        <li><a href="#" id="functional" data-endpoint="<%= functional_advertisements_path %>">Pending</a></li>
+        <li><a href="#" id="cash-out">Cash-Out transactions</a></li>
+      </ul>
+    </div>
+  </div>
+</div>

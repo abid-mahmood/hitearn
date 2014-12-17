@@ -1,0 +1,86 @@
+// Place all the styles related to the homes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+html, body {
+  width: 1280px;
+  height: 100%;
+}
+  .site-name {
+    font-style: bold;
+    text-align: center;
+    background-color: #343434;
+    color: orange;
+    font-size: 32px;
+    min-height: 100%;
+    // padding-bottom: 22px;
+    font-family: 'Times New Roman';
+    background-image: image_url('back5.jpg');
+    .container-site {
+      margin-left: 600px;
+      display: inline;
+      margin-bottom: 20px;
+      span {
+        margin-left: 20px;
+        a {
+          display: inline-block;
+          text-decoration: none;
+          font-family: 'Raleway',sans-serif;
+          font-weight: normal;
+          font-size: 14px;
+          color: #ffffff;
+          padding: 0px 15px;
+          margin: 0;
+          text-shadow: none;
+          line-height: 30px;
+          background-color: transparent;
+          -webkit-box-shadow: 0px 3px 0px 0px #928577;
+          -moz-box-shadow: 0px 3px 0px 0px #928577;
+          box-shadow: 0px 0px 0px 0px #928577;
+          -webkit-border-radius: 4px;
+          -moz-border-radius: 4px;
+          border-radius: 4px;
+        }
+        a.reg {
+          background: #a39484;
+        }
+        a.e-m {
+          background: purple;
+        }
+        a.e-m:hover {
+          background: #000;
+          color: #f29c06;
+        }
+        a.l-i {
+          background: #f29c06;
+          margin-right: -21px;
+        }
+        a.home:hover {
+          color: #000;
+        }
+        a.home {
+          color: #fff;
+        }
+      }
+    }
+  }
+  .header-img-container {
+    width: 100%;
+  }
+  .break {
+    height: 80px;
+    width: 100%;
+    background-color: orange;
+    .rotate {
+      color: #000;
+      padding-top: 5px;
+      font-weight: bold;
+      font-size: 22px;
+    }
+    .rotate-1 {
+      color: #000;
+      padding-top: 10px;
+      font-weight: bold;
+      font-size: 22px;
+    }
+  }

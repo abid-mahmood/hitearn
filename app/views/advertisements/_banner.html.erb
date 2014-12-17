@@ -1,0 +1,10 @@
+<table style="height: 120px; width: 300px; float: left; margin-right: 50px;" class='table table-bordered'>
+  <tr style='background-color: #F29C06;'><td style="text-align: center; height: 2px;"><h4><a href="<%= adv.link.present? ? (adv.link.starts_with?('http') || adv.link.starts_with?('https') ? raw(adv.link) : 'https://'+adv.link ) : '' %>"><%= adv.adv_name.present? ? adv.adv_name : '' %></a><h4><h5><%= adv.rate_per_click.present? ? adv.rate_per_click : 0 %> $ / click  </h5><h5><%= adv.functional.present? ? 'Functional' : 'Not Functional' %> </h5></td></tr>
+  <tr style='background-color: #000; color: white;'> <td><span style="font-family: 'times new roman'; font-size: 16px; font-weight: bold;">Company:</span>  <%= adv.company.present? ? adv.company : 'No Company mentioned' %> </td> </tr>
+  <tr>  
+    <td>
+      <a href="<%= edit_advertisement_path(adv) %>" class='btn btn-default btn-sm' style='margin-right: 180px;'> Edit </a> 
+      <%= link_to 'Delete', delete_advertisement_path(adv), class: 'btn btn-danger btn-sm', data: {confirm: "Are you sure?"} %>
+    </td>
+  </tr>
+</table>
