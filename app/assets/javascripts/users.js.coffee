@@ -4,17 +4,6 @@
 
 ready = ->
   # if $('body').is 
-  $('#all-customers').on 'click', ->
-    window.location = "#{$('#all-customers').data('endpoint')}"
-
-  $('#reg-users').on 'click', ->
-    window.location = "#{$('#reg-users').data('endpoint')}"
-
-  $("#unreg-users").on 'click', ->
-    window.location = "#{$('#unreg-users').data('endpoint')}"
-
-  $("#create-adv").on 'click', ->
-    window.location = "#{$('#create-adv').data('endpoint')}"
 
 load = ->
   window.location.reload()
