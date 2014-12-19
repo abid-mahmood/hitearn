@@ -1,6 +1,6 @@
 Hitearn::Application.routes.draw do
 
-  root 'home#index'
+  root 'homes#index'
 
   resources :homes 
 
