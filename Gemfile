@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.1.3'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.1'
 
@@ -8,6 +10,8 @@ gem 'bootstrap-sass', '~> 3.3.1'
 gem 'sass-rails', '>= 3.2'
 
 gem 'autoprefixer-rails'
+
+gem 'rails_12factor'
 
 # Use sqlite3 as the database for Active Record
 gem 'pg'
