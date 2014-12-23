@@ -94,6 +94,7 @@ class UsersController < ApplicationController
     user.update_attribute(:activated_at, Time.now) if status == true
     redirect_to :back
   end
+  
 
   def logout
     reset_session
