@@ -17,7 +17,7 @@
       <% end %>
     </span>
     <% if session[:current_user].nil? %>
-      <span> <a href='', class='reg' >Register</a> </span>
+      <span> <%= link_to 'Register', new_user_path, class: 'reg' %> </span>
     <% end %>
   </div>
 </div>

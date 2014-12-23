@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141222175623) do
+ActiveRecord::Schema.define(version: 20141223144409) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20141222175623) do
     t.boolean  "activated",        default: false
     t.integer  "cash_out_request"
     t.string   "contact_number"
+    t.string   "cnic"
   end
 
 end

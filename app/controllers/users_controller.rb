@@ -11,6 +11,17 @@ class UsersController < ApplicationController
   end
 
   def new
+    @user = User.new
+  end
+
+  def create
+    @user = User.create(user_params)
+
+    if @user.save
+      redirect_to homes_path, alert: "Successful Registration."
+    else
+      render "new"
+    end
   end
 
   def index
@@ -18,6 +29,20 @@ class UsersController < ApplicationController
     @activated = User.where(:activated => true).count
     @inactive = User.where(:activated => false).count
     @users = User.all
+  end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      redirect_to users_path if session[:admin].present?
+    else
+      render "edit"
+    end
+
   end
 
   def login
@@ -66,6 +91,7 @@ class UsersController < ApplicationController
     status = user.activated
     option = status ? false : true
     user.update_attribute(:activated, option)
+    user.update_attribute(:activated_at, Time.now) if status == true
     redirect_to :back
   end
 
@@ -74,12 +100,22 @@ class UsersController < ApplicationController
     redirect_to homes_path
   end
 
-  def create
-  end
-
   def delete
     @user = User.where(id: params[:id]).first
     @user.destroy
     redirect_to :back
+  end
+
+private
+  def user_params
+    params.require(:user).permit(
+      :first_name,
+      :last_name,
+      :email,
+      :contact_number,
+      :password,
+      :username,
+      :cnic
+      )
   end
 end

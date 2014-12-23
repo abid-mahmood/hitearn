@@ -16,12 +16,12 @@
      <% end %>
   </span>
   <table class='table table-hover table-bordered'> 
-    <th> Username  </th>
-    <th> Email </th>
+    <th> Name  </th>
+    <th> CNIC </th>
     <th> Contact Number </th>
+    <th> Email </th>
     <th> Passwords </th>
     <th> Registered At </th>
-    <th> Activated At </th>
     <th> Status </th>
     <th> Actions </th>
     <% users.each do |user| %>
@@ -30,20 +30,20 @@
         <% else %>
           <tr class="danger">
         <% end %>
-        <td><%= user.username %></td>
-        <td><%= user.email %></td>
+        <td><%= user.first_name %> <%= user.last_name %></td>
+        <td><%= user.cnic %></td>
         <td><%= user.contact_number %></td>
+        <td><%= user.email %></td>
         <td><%= user.password %></td>
         <td><%= user.created_at.strftime("%B %d, %Y") %></td>
-        <td><%= user.activated_at.present? ? user.activated_at.strftime("%B %d, %Y") : 'Inactive' %></td>
         <td> <%= user.activated ? 'Active' : 'Inactive' %> </td>
         <td>
-          <a class='btn btn-danger' href="<%= delete_user_path(user) %>" onClick="window.location.reload();"> Delete </a>
-          <a class='btn btn-info'> Edit </a>
+          <%= link_to 'Delete', delete_user_path(user), data: {confirm: "Are You Sure?"}, class: "btn btn-danger btn-sm" %>
+          <a href="<%= edit_user_path(user) %>" class='btn btn-info btn-sm'> Edit </a>
           <% if user.activated %>
-            <a class='btn btn-warning' href="<%= active_or_inactive_user_path(user) %>" onClick="window.location.reload()"> Inactive </a>
+            <a class='btn btn-warning btn-sm' href="<%= active_or_inactive_user_path(user) %>" onClick="window.location.reload()"> Inactive </a>
           <% else %>
-            <a class='btn btn-success' href="<%= active_or_inactive_user_path(user) %>" onClick="window.location.reload()"> Active </a>
+            <a class='btn btn-success btn-sm' href="<%= active_or_inactive_user_path(user) %>" onClick="window.location.reload()"> Active </a>
           <% end %>
         </td>
       </tr>

@@ -4,6 +4,8 @@ ready = ->
     $('.footer-site').css('bottom','-78px')
   else if page == "homes"
     $('.footer-site').css('bottom','-91px')
+  else if page == "users"
+    $('.footer-site').css('bottom','-100px')
 
   $("#advertisements").on 'click', ->
     window.location = "#{$('#advertisements').data('endpoint')}"
