@@ -15,24 +15,28 @@ ready = ->
     window.location = "#{$('#non-functional').data('endpoint')}"
 
   $('#all-customers').on 'click', ->
-    console.log 'All Before'
     window.location = "#{$('#all-customers').data('endpoint')}"
-    console.log 'All After'
 
   $('#reg-users').on 'click', ->
-    console.log 'register before'
     window.location = "#{$('#reg-users').data('endpoint')}"
-    console.log 'register after'
 
   $("#unreg-users").on 'click', ->
-    console.log 'unregister b4'
     window.location = "#{$('#unreg-users').data('endpoint')}"
-    console.log 'unreg after'
 
   $("#create-adv").on 'click', ->
-    console.log 'adver b4'
     window.location = "#{$('#create-adv').data('endpoint')}"
-    console.log 'advert after'
+
+  $("#complete-payment").on 'click', ->
+    window.location = "#{$('#complete-payment').data('endpoint')}"
+
+  $("#pending-payment").on 'click', ->
+    window.location = "#{$('#pending-payment').data('endpoint')}"
+
+  $("#payments").on 'click', ->
+    window.location = "#{$('#payments').data('endpoint')}"
+
+  $("#new-payment").on 'click', ->
+    window.location = "#{$('#new-payment').data('endpoint')}"
 
 $(document).ready(ready)
 $(document).load(ready)

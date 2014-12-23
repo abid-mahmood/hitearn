@@ -18,7 +18,7 @@
   <table class='table table-hover table-bordered'> 
     <th> Username  </th>
     <th> Email </th>
-    <th> Earned Amount </th>
+    <th> Contact Number </th>
     <th> Passwords </th>
     <th> Registered At </th>
     <th> Activated At </th>
@@ -32,7 +32,7 @@
         <% end %>
         <td><%= user.username %></td>
         <td><%= user.email %></td>
-        <td><%= user.earned_money == false ? 0 : user.earned_money %></td>
+        <td><%= user.contact_number %></td>
         <td><%= user.password %></td>
         <td><%= user.created_at.strftime("%B %d, %Y") %></td>
         <td><%= user.activated_at.present? ? user.activated_at.strftime("%B %d, %Y") : 'Inactive' %></td>

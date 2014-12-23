@@ -1,7 +1,7 @@
 <div class='container-fluid'>
   <div class='row' style='margin-top: 30px; text-align: center;'>
     <div class="btn-group" style="margin-right: 50px;">
-      <button type="button" class="btn btn-info btn-lg" id="all-customers" data-endpoint="<%= users_path %>">Customers</button>
+      <button type="button" class="btn btn-info btn-lg" id="all-customers" data-endpoint="<%= users_path %>">Users</button>
       <button type="button" class="btn btn-default dropdown-toggle btn-lg" data-toggle="dropdown" aria-expanded="false">
         <span class="caret"></span>
         <span class="sr-only">Toggle Dropdown</span>
@@ -11,6 +11,21 @@
         <li><a href="#" id="unreg-users" data-endpoint="<%= unreg_users_users_path %>">Inactive</a></li>
       </ul>
     </div>
+
+    <div class='btn-group' style="margin-right: 50px;">
+      <button type="button" class="btn btn-info btn-lg" id="payments" data-endpoint = "<%= payments_path %>">Payments</button>
+      <button type="button" class="btn btn-default dropdown-toggle btn-lg" data-toggle="dropdown" aria-expanded="false">
+        <span class="caret"></span>
+        <span class="sr-only">Toggle Dropdown</span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="#" id="new-payment" data-endpoint="<%= new_amount_path %>">Set Amount</a></li>
+        <li><a href="#" id="complete-payment" data-endpoint="<%= completed_payments_path %>">Done</a></li>
+        <li><a href="#" id="pending-payment" data-endpoint="<%= pending_payments_path %>">Pending</a></li>
+        <li><a href="#" id="cash-out">Cash-Out transactions</a></li>
+      </ul>
+    </div>
+
     <div class='btn-group' style="margin-right: 50px;">
       <button type="button" class="btn btn-info btn-lg" id="advertisements" data-endpoint = "<%= advertisements_path %>">Advertisements</button>
       <button type="button" class="btn btn-default dropdown-toggle btn-lg" data-toggle="dropdown" aria-expanded="false">
@@ -24,17 +39,9 @@
       </ul>
     </div>
 
-    <div class='btn-group'>
-      <button type="button" class="btn btn-info btn-lg" id="advertisements" data-endpoint = "<%= advertisements_path %>">Payments</button>
-      <button type="button" class="btn btn-default dropdown-toggle btn-lg" data-toggle="dropdown" aria-expanded="false">
-        <span class="caret"></span>
-        <span class="sr-only">Toggle Dropdown</span>
-      </button>
-      <ul class="dropdown-menu" role="menu">
-        <li><a href="#" id="create-adv" data-endpoint="<%= new_advertisement_path %>">Done</a></li>
-        <li><a href="#" id="functional" data-endpoint="<%= functional_advertisements_path %>">Pending</a></li>
-        <li><a href="#" id="cash-out">Cash-Out transactions</a></li>
-      </ul>
+    <div class='btn-group' style="margin-right: 50px;">
+      <button type="button" class="btn btn-default btn-lg" id="referrals" data-endpoint = "<%= referrals_path %>">Referrals</button>
     </div>
+
   </div>
 </div>

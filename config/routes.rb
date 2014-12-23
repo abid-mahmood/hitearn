@@ -28,6 +28,17 @@ Hitearn::Application.routes.draw do
       get 'non_functional'
     end
   end
+
+  resources :referrals
+
+  resources :payments do
+    collection do
+      get 'pending'
+      get 'completed'
+    end
+  end
+
+  resources :amounts
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
