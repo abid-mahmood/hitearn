@@ -1,5 +1,0 @@
-<% if session[:admin].present? %>
-  <%= render 'shared/admin_actions' %>
-<% end %>
-
-<%= render 'display', payments: @payments, users: @users, title: 'Listing all Payments', done: @done_pays, pend: @pending_pays %>
