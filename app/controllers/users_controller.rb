@@ -21,12 +21,11 @@ class UsersController < ApplicationController
     confirm_ref = User.where(:id => reference)
     @user = User.create(user_params)
     if @user.save
-      pay = Payment.create(:user_id => @user.id, :fixed_amount => Amount.last.fixed_amount, :paid_at => nil)
+      pay = Payment.create(:user_id => @user.id, :fixed_amount => nil, :paid_at => nil)
       pay.save
       if reference.blank?
         redirect_to homes_path, alert: "Successful Registration."
       elsif confirm_ref.present?
-        binding.pry
         @user.update_attribute(:referral_num, reference)
         redirect_to homes_path, alert: "Successful Registration."
       elsif confirm_ref.blank?
@@ -78,6 +77,7 @@ class UsersController < ApplicationController
   end
 
   def user_panel
+    @user = User.where(id: session[:current_user]).first.first_name
     @ads = Advertisement.where(:functional => true)
   end
 
@@ -89,7 +89,7 @@ class UsersController < ApplicationController
       params[:admin] = session[:admin]
     end
 
-    if params[:user][:email] == 'abid' && params[:user][:password] == 'butt'
+    if (params[:user][:email] == 'abid' && params[:user][:password] == 'butt') || (params[:user][:email] == 'admin' && params[:user][:password] == 'rafayadmin')
       session[:current_user] = params[:user][:email]
       session[:password] = params[:user][:password]
       session[:admin] = true
@@ -102,6 +102,12 @@ class UsersController < ApplicationController
           session[:current_user] = @user.id
           respond_to do |format|
             format.html { redirect_to user_panel_users_path, notice: 'Login Successful', method: :post }
+          end
+        elsif @user.activated.present?
+          session[:admin] = false
+          session[:current_user] = @user.id
+          respond_to do |format|
+            format.html { redirect_to user_panel_users_path, notice: 'Free Login Successful', method: :post }
           end
         else
           redirect_to homes_path, notice: "You are not activated Yet, Contact Admin."
@@ -133,6 +139,16 @@ class UsersController < ApplicationController
     status = user.activated
     user.update_attribute(:activated_at, Time.now) if status == true
     user.payments.first.update_attributes(:status => true, :paid_at => Time.now)
+    user.payments.first.update_attribute(:fixed_amount, Amount.last.fixed_amount)
+    user.update_attribute(:free, false)
+    redirect_to :back
+  end
+
+  def free_active
+    user_id = params[:id]
+    user = User.where(:id => user_id).first
+    user.update_attribute(:activated, true)
+    user.payments.first.update_attribute(:fixed_amount, nil)
     redirect_to :back
   end
 
@@ -140,6 +156,14 @@ class UsersController < ApplicationController
     user_id = params[:id]
     user = User.where(:id => user_id).first
     user.payments.first.update_attribute(:status, false)
+    user.update_attribute(:activated, false)
+    redirect_to :back
+  end
+
+  def free_inactive
+    user_id = params[:id]
+    user = User.where(id: user_id).first
+    user.update_attribute(:activated, false)
     redirect_to :back
   end
 
@@ -163,7 +187,8 @@ private
       :contact_number,
       :password,
       :username,
-      :cnic
+      :cnic,
+      :free
       )
   end
 end

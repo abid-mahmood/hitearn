@@ -29,6 +29,8 @@ Hitearn::Application.routes.draw do
       get 'delete'
       get 'active_or_inactive'
       get 'inactive'
+      get 'free_active'
+      get 'free_inactive'
     end
   end
 

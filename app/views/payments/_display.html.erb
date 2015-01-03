@@ -22,10 +22,13 @@
     <th> Status </th>
     <th> Pay Date </th>
     <th> Payment Amount </th>
+    <th> Actions </th>
     <% if users.present? %>
       <% users.each do |user| %>
         <% if user.payments.first && user.payments.first.status %>
             <tr class="success">
+          <% elsif user.activated.present? %>
+             <tr class="warning">
           <% else %>
             <tr class="danger">
           <% end %>
@@ -34,12 +37,15 @@
           <td><%= user.contact_number %></td>
           <td><%= user.payments.first && user.payments.first.status ? 'Done' : 'Pending' %></td>
           <td><%= user.payments.first && user.payments.first.paid_at ? user.payments.first.paid_at.strftime("%B %d, %Y") : '00-00-00' %></td>
-          <td><%= @amount %></td>
+          <td><%= user.free.present? ? 'Free' : (user.payments.first.fixed_amount.present? ? user.payments.first.fixed_amount : 'Premium') %></td>
           <td>
             <% if user.payments.first && user.payments.first.status %>
-              <a class='btn btn-warning' onClick="window.location.reload()"> Activated </a>
+              <a class='btn btn-info' onClick="window.location.reload()"> Activated </a>
+            <% elsif user.activated %>
+              <a class='btn btn-success' href="<%= active_or_inactive_user_path(user) %>" onClick="window.location.reload()"> Active </a>
             <% else %>
               <a class='btn btn-success' href="<%= active_or_inactive_user_path(user) %>" onClick="window.location.reload()"> Active </a>
+              <a class='btn btn-warning' href='<%= free_active_user_path(user) %>' onclick="window.location.reload()"> Free Active </a>
             <% end %>
           </td>
         </tr>

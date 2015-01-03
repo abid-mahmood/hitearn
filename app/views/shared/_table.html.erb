@@ -26,10 +26,12 @@
     <th> Actions </th>
     <% users.each do |user| %>
       <% if user.payments.first.status %>
-          <tr class="success">
-        <% else %>
-          <tr class="danger">
-        <% end %>
+        <tr class="success">
+      <% elsif user.activated.present? %>
+          <tr class="warning">
+      <% else %>
+        <tr class="danger">
+      <% end %>
         <td><%= user.username %></td>
         <td><%= user.cnic %></td>
         <td><%= user.contact_number %></td>
@@ -42,6 +44,8 @@
           <a href="<%= edit_user_path(user) %>" class='btn btn-info btn-sm'> Edit </a>
           <% if user.payments.first.status %>
             <%= link_to 'Inactive', inactive_user_path(user), data: {confirm: "Are You Sure?"}, class: "btn btn-warning btn-sm" %>
+          <% elsif user.activated.present? %>
+            <%= link_to 'Free Inactive', free_inactive_user_path(user), data: {confirm: "Are You Sure?"}, class: "btn btn-warning btn-sm" %>
           <% end %>
         </td>
       </tr>
