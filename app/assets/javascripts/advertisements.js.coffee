@@ -8,7 +8,7 @@ ready = ->
     $('.footer-site').css('bottom','-100px')
   else if page == "cash_outs"
     $('.footer-site').css('bottom','-100px')
-  else if page == "payment"
+  else if page == "payments"
     $('.footer-site').css('bottom','-100px')
 
   $("#advertisements").on 'click', ->
