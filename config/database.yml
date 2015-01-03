@@ -26,5 +26,6 @@ production:
   adapter: postgresql
   database: hitearn_production
   host: localhost
+  username: admin
   pool: 5
   timeout: 5000
