@@ -77,8 +77,13 @@ class UsersController < ApplicationController
   end
 
   def user_panel
+    @total = UserEarning.where(:user_id => session[:current_user]).sum(:rate)
+    cash_out_any = CashOut.where(:user_id => session[:current_user]).sum(:cash_out_amount) if @total.to_f > 0
+    @earned_money = (@total.to_f > 0.0) ? (@total.to_f - cash_out_any.to_f).round(2) : 0.0
+    @user_info = User.where(:id => session[:current_user]).first
     @user = User.where(id: session[:current_user]).first.first_name
     @ads = Advertisement.where(:functional => true)
+    @referral = User.where(:referral_num => session[:current_user]).count
   end
 
   def user_home

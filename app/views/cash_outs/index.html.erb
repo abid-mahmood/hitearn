@@ -16,7 +16,7 @@
     <% if @cash.present? %>
       <% @cash.each do |user| %>
         <tr>
-          <td><%= user.user_id.present? ? User.getName(user.user_id).username : 'N/A' %></td>
+          <td><%= user.user_id.present? ? (User.getName(user.user_id).first.present? ? User.getName(user.user_id).first.username : "User has been deleted" ) : 'N/A' %></td>
           <td><%= UserEarning.getEarning(user.user_id) %></td>
           <td><%= user.cash_out_amount %></td>
           <td><%= user.completed.present? ? 'Completed' : 'Pending' %></td>

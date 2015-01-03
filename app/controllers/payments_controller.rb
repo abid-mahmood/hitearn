@@ -1,5 +1,7 @@
 class PaymentsController < ApplicationController
 
+  before_filter :authorize, only: [:index]
+
   def pending
     @payments = Payment.where(:status => false)
   end

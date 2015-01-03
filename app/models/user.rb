@@ -13,9 +13,9 @@ class User < ActiveRecord::Base
   validates_length_of :username, maximum: 12, message: "Only 13 characters allowed for username."
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, message: "Invalid email format"
 
-  scope :getName, ->(referral_id) { where("id = ?", referral_id).first }
+  scope :getName, ->(referral_id) { where("id = ?", referral_id) }
 
-  has_many :payments
-  has_many :cash_outs
+  has_many :payments, :dependent => :destroy
+  has_many :cash_outs, :dependent => :destroy
   
 end

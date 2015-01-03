@@ -20,6 +20,18 @@
   </div>
 </div>
 
+ <table class='table table-hover table-bordered' style='margin-left: 260px !important; width: 60% !important;'>
+    <th> Username  </th>
+    <th> Membership </th>
+    <th> Balance </th>
+    <th> No. of Referrals </th>
+    <tr class="success">
+      <td><%= @user_info.username %></td>
+      <td><%= @user_info.payments.first.fixed_amount.present? ? 'Premium' : 'Free' %></td>
+      <td><%= @earned_money %></td>
+      <td><%= @referral %></td>
+    </tr>
+  </table>
 <div class='container'>
   <div class='row'>
     <h2 style="font-family: 'Times new Roman'; margin-bottom: 50px;"> ADS </h2>
