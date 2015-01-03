@@ -1,0 +1,35 @@
+<% if session[:admin].present? %>
+  <%= render 'shared/admin_actions' %>
+<% end %>
+
+<div class='container'>
+  <div class='row'>
+    <h1 syle='text-align: center;'>Listing All Requests </h1>
+  </div>
+  <table class='table table-hover table-bordered' style='margin-left: -30px !important; width: 130% !important; margin-top: 30px;'>
+    <th> Username  </th>
+    <th> Total Earned Money </th>
+    <th> Cash Out Request </th>
+    <th> Request status </th>
+    <th> Requested At </th>
+    <th> Actions </th>
+    <% if @cash.present? %>
+      <% @cash.each do |user| %>
+        <tr>
+          <td><%= user.user_id.present? ? User.getName(user.user_id).username : 'N/A' %></td>
+          <td><%= UserEarning.getEarning(user.user_id) %></td>
+          <td><%= user.cash_out_amount %></td>
+          <td><%= user.completed.present? ? 'Completed' : 'Pending' %></td>
+          <td><%= user.created_at.strftime("%B %d, %Y") %></td>
+          <td>
+          <% if !user.completed %>
+            <a class='btn btn-warning btn-sm' href="<%= active_request_cash_out_path(user) %>" onClick="window.location.reload()"> Accept </a>
+          <% else %>
+            <a class='btn btn-success btn-sm' href="#"> Accepted </a>
+          <% end %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+</div>

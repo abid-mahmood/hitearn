@@ -1,0 +1,43 @@
+<div>
+  <h1 style="text-align: center; font-family: 'times new roman';"> Cash Out Request Panel  </h1>
+
+<ul>
+  <% if session[:error].present? %>
+    <li style='color: red;'> <%= session[:error] %> </li>
+  <% end %>
+  <% session[:error] = '' %>
+</ul>
+
+  <h3 style="font-family: 'times new roman';"> Your Total Earned Amount is:  <strong><%= @earned_money %>$ </strong></h3>
+</div>
+<%= form_for @request do |f| %>
+  <div class="form-group" style="width: 25%; margin-top: 50px; margin-left: 50px;">
+      <%= f.label :cash_out_amount, 'Amount to Withdraw' %>
+      <%= f.text_field :cash_out_amount , html_options = { class: "form-control", placeholder: "Requested Amount" } %>
+  </div>
+  <button type="submit" class="btn btn-info" style="margin-left: 170px;">Request</button>
+<% end %>
+
+<div class='container'>
+  <div class='row'>
+    <h1 syle='text-align: center;'>Transactions history </h1>
+  </div>
+  <table class='table table-hover table-bordered' style='margin-left: -30px !important; width: 130% !important; margin-top: 30px;'>
+    <th> Username  </th>
+    <th> Total Earned Money </th>
+    <th> Cash Out Request </th>
+    <th> Request status </th>
+    <th> Requested At </th>
+    <% if @cash.present? %>
+      <% @cash.each do |user| %>
+        <tr>
+          <td><%= user.user_id.present? ? User.getName(user.user_id).first_name  : 'N/A' %></td>
+          <td><%= UserEarning.getEarning(user.user_id) %></td>
+          <td><%= user.cash_out_amount %></td>
+          <td><%= user.completed.present? ? 'Completed' : 'Pending' %></td>
+          <td><%= user.created_at.strftime("%B %d, %Y") %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+</div>

@@ -1,0 +1,11 @@
+<div class='container'>
+  <div class='row'>
+    <h2 style="font-family: 'Times new Roman'; margin-bottom: 50px;"> Ads </h2>
+  </div>
+</div>
+
+<div class='container'>
+  <% @ads.each do |adv| %>
+    <%= render 'advertisements/banner', adv: adv  %>
+  <% end %>
+</div>

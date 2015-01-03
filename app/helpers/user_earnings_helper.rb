@@ -1,0 +1,2 @@
+module UserEarningsHelper
+end

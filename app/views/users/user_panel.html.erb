@@ -1,0 +1,25 @@
+<% if flash[:notice].present? %>
+  <div id="freeow-tr", class="freeow freeow-top-right">
+    <div style="opacity: 1;">
+      <div class="background">
+        <div class="content">
+        </div>
+      </div>
+    </div>
+  </div>
+  <input type='hidden', class='sync', value= "<%= raw flash[:notice] %>" />
+<% end %>
+<div class='container'>
+  <div class='row'>
+    <h2 style="font-family: 'Times new Roman'; margin-bottom: 50px;"> Ads </h2>
+  </div>
+  <div style="margin-bottom: 50px;">
+    <%= link_to 'Cash Out Request', new_cash_out_path, class: "btn btn-primary btn-lg" %>
+  </div>
+</div>
+
+<div class='container'>
+  <% @ads.each do |adv| %>
+    <%= render 'advertisements/banner', adv: adv  %>
+  <% end %>
+</div>
