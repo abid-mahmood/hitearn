@@ -3,11 +3,10 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 ready = ->
-  # if $('body').is 
 
 load = ->
   window.location.reload()
 
 
 $(document).ready(ready)
-$(document).load(load) 
+$(document).load(ready)

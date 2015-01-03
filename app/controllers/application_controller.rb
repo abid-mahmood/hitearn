@@ -10,4 +10,12 @@ class ApplicationController < ActionController::Base
       redirect_to homes_path, notice: "You are not authorized to view this page!"
     end
   end
+
+  def check_user
+    if session[:current_user].present?
+      true
+    else
+      redirect_to homes_path, notice: "Please Login to view this page!"
+    end
+  end
 end

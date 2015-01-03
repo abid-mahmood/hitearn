@@ -2,7 +2,19 @@ Hitearn::Application.routes.draw do
 
   root 'homes#index'
 
-  resources :homes 
+  resources :homes
+
+  resources :cash_outs do
+    member do
+      get 'active_request'
+    end
+  end
+
+  resources :user_earnings do
+    member do
+      get 'create_earning'
+    end
+  end
 
   resources :users do
     collection do
@@ -11,10 +23,12 @@ Hitearn::Application.routes.draw do
       get 'logout'
       get 'reg_users'
       get 'unreg_users'
+      get 'user_panel'
     end
     member do
       get 'delete'
       get 'active_or_inactive'
+      get 'inactive'
     end
   end
 
@@ -26,6 +40,7 @@ Hitearn::Application.routes.draw do
     collection do
       get 'functional'
       get 'non_functional'
+      get 'earn_money'
     end
   end
 
@@ -39,6 +54,7 @@ Hitearn::Application.routes.draw do
   end
 
   resources :amounts
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

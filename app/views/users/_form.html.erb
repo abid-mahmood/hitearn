@@ -75,7 +75,16 @@
       <%= f.text_field :cnic , html_options = { class: "form-control", placeholder: "CNIC e.g 3520221344451" } %>
     </div>
 
-      <button type="submit" class="btn btn-info" style="margin-left: 290px;">Update!</button>
+    <div>
+      <div class="form-group" style="width: 25%; margin-left: 200px;">
+        <%= f.label :referral_num, 'Referral Number' %>
+        <%= f.text_field :referral_num , html_options = { class: "form-control", placeholder: "Referral number (Optional)" } %>
+        <br />
+        <strong>HINT:</strong> Referral Number indicates person referring you.
+      </div>
+    </div>
+
+      <button type="submit" class="btn btn-info" style="margin-left: 290px;"><%= button %>!</button>
   <% end %>
 
 </div>

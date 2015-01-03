@@ -16,7 +16,7 @@
      <% end %>
   </span>
   <table class='table table-hover table-bordered'> 
-    <th> Name  </th>
+    <th> Username  </th>
     <th> Email </th>
     <th> Contact Number </th>
     <th> Status </th>
@@ -24,22 +24,20 @@
     <th> Payment Amount </th>
     <% if users.present? %>
       <% users.each do |user| %>
-        <% if user.payment.status %>
+        <% if user.payments.first && user.payments.first.status %>
             <tr class="success">
           <% else %>
             <tr class="danger">
           <% end %>
-          <td><%= user.first_name user.last_name %></td>
+          <td><%= user.username %></td>
           <td><%= user.email %></td>
           <td><%= user.contact_number %></td>
-          <td><%= user.payment.status ? 'Done' : 'Pending' %></td>
-          <td><%= user.payment.paid_at ? payment.paid_at.strftime("%B %d, %Y") : '00-00-00' %></td>
+          <td><%= user.payments.first && user.payments.first.status ? 'Done' : 'Pending' %></td>
+          <td><%= user.payments.first && user.payments.first.paid_at ? user.payments.first.paid_at.strftime("%B %d, %Y") : '00-00-00' %></td>
           <td><%= @amount %></td>
           <td>
-            <a class='btn btn-danger' href="<%= delete_user_path(user) %>" onClick="window.location.reload();"> Delete </a>
-            <a class='btn btn-info'> Edit </a>
-            <% if user.activated %>
-              <a class='btn btn-warning' href="<%= active_or_inactive_user_path(user) %>" onClick="window.location.reload()"> Inactive </a>
+            <% if user.payments.first && user.payments.first.status %>
+              <a class='btn btn-warning' onClick="window.location.reload()"> Activated </a>
             <% else %>
               <a class='btn btn-success' href="<%= active_or_inactive_user_path(user) %>" onClick="window.location.reload()"> Active </a>
             <% end %>

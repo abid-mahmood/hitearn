@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141223144409) do
+ActiveRecord::Schema.define(version: 20150102162206) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,13 +32,29 @@ ActiveRecord::Schema.define(version: 20141223144409) do
     t.datetime "updated_at"
   end
 
-  create_table "payments", force: true do |t|
+  create_table "cash_outs", force: true do |t|
     t.integer  "user_id"
+    t.float    "cash_out_amount"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "completed",       default: false
+  end
+
+  create_table "payments", force: true do |t|
     t.boolean  "status",       default: false
     t.datetime "paid_at"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.float    "fixed_amount"
+    t.integer  "user_id"
+  end
+
+  create_table "user_earnings", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "adv_id"
+    t.float    "rate"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
@@ -50,10 +66,11 @@ ActiveRecord::Schema.define(version: 20141223144409) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "activated_at"
-    t.boolean  "activated",        default: false
-    t.integer  "cash_out_request"
+    t.boolean  "activated",      default: false
+    t.integer  "cash_out_id"
     t.string   "contact_number"
     t.string   "cnic"
+    t.integer  "referral_num"
   end
 
 end

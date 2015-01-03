@@ -1,4 +1,6 @@
 class AdvertisementsController < ApplicationController
+  after_action :allow_facebook_iframe
+  before_filter :check_user, only: [:show, :index]
 
   def new
     @adv = Advertisement.new
@@ -11,6 +13,16 @@ class AdvertisementsController < ApplicationController
     else
       render "new"
     end
+  end
+
+  def show
+    @adv = Advertisement.where(:id => params[:id]).first
+    user = session[:current_user]
+    @confirm = UserEarning.where(:adv_id => @adv.id, user_id: user).first
+  end
+
+  def earn_money
+    @ads = Advertisement.where(:functional => true)
   end
 
   def index
@@ -57,5 +69,9 @@ private
       :functional,
       :link
       )
+  end
+
+  def allow_facebook_iframe
+    response.headers['X-Frame-Options'] = 'ALLOWALL'
   end
 end

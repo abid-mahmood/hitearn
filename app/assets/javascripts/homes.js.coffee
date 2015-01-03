@@ -2,7 +2,7 @@ ready = ()->
   if $('.freeow').length > 0
     opts = {}
     opts.classes = ["smokey"]
-    opts.classes.push("error")
+    opts.classes.push("")
     opts.autoHide = true
     opts.classes.push("slide")
     opts.hideStyle = {
@@ -15,7 +15,7 @@ ready = ()->
     };
     
     container = $('#freeow-tr')
-    $(container).freeow('Error',$('input.sync').val(), opts)
+    $(container).freeow('Info',$('input.sync').val(), opts)
 
 $(document).ready(ready)
 $(document).load(ready)

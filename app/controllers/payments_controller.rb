@@ -10,8 +10,8 @@ class PaymentsController < ApplicationController
 
   def index
     @payments = Payment.all
-    @done_pays = completed
-    @pending_pays = pending
+    @done_pays = completed.count
+    @pending_pays = pending.count
     @users = User.all
     @amount = Amount.last.fixed_amount
   end
@@ -21,14 +21,6 @@ class PaymentsController < ApplicationController
   end
 
   def create
-    @amount = Amount.new
-    @payment = @amount.create(:fixed_amount => params[:fixed_amount])
-
-    if @payment.save
-
-      redirect_to payments_path, notice: "New Payment has been set!"
-    else
-      render "new"
-    end
   end
+  
 end
