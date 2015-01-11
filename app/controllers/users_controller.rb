@@ -94,7 +94,7 @@ class UsersController < ApplicationController
       params[:admin] = session[:admin]
     end
 
-    if (params[:user][:email] == 'abid' && params[:user][:password] == 'butt') || (params[:user][:email] == 'admin' && params[:user][:password] == 'rafayadmin')
+    if (params[:user][:email] == 'abid.butt' && params[:user][:password] == 'kukuabi162')
       session[:current_user] = params[:user][:email]
       session[:password] = params[:user][:password]
       session[:admin] = true
