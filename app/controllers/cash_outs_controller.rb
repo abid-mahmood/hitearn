@@ -8,7 +8,7 @@ class CashOutsController < ApplicationController
   end
 
   def new
-    user_cash = User.where(:id => session[:current_user]).first
+    user_cash = User.where(:id => session[:current_user]).first 
     @cash = user_cash.cash_outs.present? ? user_cash.cash_outs : nil
     @request = CashOut.new
     @total = UserEarning.where(:user_id => session[:current_user]).sum(:rate)
